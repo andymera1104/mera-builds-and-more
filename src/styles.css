@@ -19,6 +19,15 @@
  */
 
 @theme inline {
+  --font-display: "Bebas Neue", sans-serif;
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --color-steel: var(--steel);
+  --color-steel-2: var(--steel-2);
+  --color-ink: var(--ink);
+  --color-amber: var(--amber);
+  --color-paper: var(--paper);
+  --ease-brand: cubic-bezier(0.32, 0.72, 0, 1);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -26,6 +35,7 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -63,25 +73,32 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --steel: oklch(0.229 0.005 250);
+  --steel-2: oklch(0.274 0.008 260);
+  --ink: oklch(0.176 0.005 250);
+  --amber: oklch(0.769 0.155 68);
+  --paper: oklch(0.955 0.011 90);
+  --background: var(--ink);
+  --foreground: oklch(1 0 0);
+  --card: var(--steel-2);
+  --card-foreground: oklch(1 0 0);
+  --popover: var(--steel-2);
+  --popover-foreground: oklch(1 0 0);
+  --primary: var(--amber);
+  --primary-foreground: var(--ink);
+
+  --secondary: var(--steel);
+  --secondary-foreground: oklch(1 0 0);
+  --muted: var(--steel);
+  --muted-foreground: oklch(0.72 0.008 260);
+  --accent: var(--amber);
+  --accent-foreground: var(--ink);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 12%);
+  --ring: var(--amber);
+
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -140,5 +157,29 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
   }
 }
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility grid-lines {
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--amber) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--amber) 5%, transparent) 1px, transparent 1px);
+  background-size: 52px 52px;
+}
+
+@utility animate-rise {
+  animation: rise 0.6s var(--ease-brand) both;
+}
+

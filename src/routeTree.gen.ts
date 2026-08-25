@@ -10,33 +10,73 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as FenceRouteImport } from './routes/fence'
+import { Route as FlooringRouteImport } from './routes/flooring'
+import { Route as PaintingRouteImport } from './routes/painting'
+import { Route as RoofingRouteImport } from './routes/roofing'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FenceRoute = FenceRouteImport.update({
+  id: '/fence',
+  path: '/fence',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FlooringRoute = FlooringRouteImport.update({
+  id: '/flooring',
+  path: '/flooring',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PaintingRoute = PaintingRouteImport.update({
+  id: '/painting',
+  path: '/painting',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RoofingRoute = RoofingRouteImport.update({
+  id: '/roofing',
+  path: '/roofing',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/fence': typeof FenceRoute
+  '/flooring': typeof FlooringRoute
+  '/painting': typeof PaintingRoute
+  '/roofing': typeof RoofingRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/fence': typeof FenceRoute
+  '/flooring': typeof FlooringRoute
+  '/painting': typeof PaintingRoute
+  '/roofing': typeof RoofingRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/fence': typeof FenceRoute
+  '/flooring': typeof FlooringRoute
+  '/painting': typeof PaintingRoute
+  '/roofing': typeof RoofingRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/fence' | '/flooring' | '/painting' | '/roofing'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/fence' | '/flooring' | '/painting' | '/roofing'
+  id: '__root__' | '/' | '/fence' | '/flooring' | '/painting' | '/roofing'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FenceRoute: typeof FenceRoute
+  FlooringRoute: typeof FlooringRoute
+  PaintingRoute: typeof PaintingRoute
+  RoofingRoute: typeof RoofingRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +88,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/fence': {
+      id: '/fence'
+      path: '/fence'
+      fullPath: '/fence'
+      preLoaderRoute: typeof FenceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/flooring': {
+      id: '/flooring'
+      path: '/flooring'
+      fullPath: '/flooring'
+      preLoaderRoute: typeof FlooringRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/painting': {
+      id: '/painting'
+      path: '/painting'
+      fullPath: '/painting'
+      preLoaderRoute: typeof PaintingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/roofing': {
+      id: '/roofing'
+      path: '/roofing'
+      fullPath: '/roofing'
+      preLoaderRoute: typeof RoofingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FenceRoute: FenceRoute,
+  FlooringRoute: FlooringRoute,
+  PaintingRoute: PaintingRoute,
+  RoofingRoute: RoofingRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
