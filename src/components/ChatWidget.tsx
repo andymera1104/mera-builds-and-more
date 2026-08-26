@@ -56,6 +56,8 @@ export function ChatWidget() {
     if (!text || loading) return;
 
     const currentStep = STEPS[stepIndex];
+    if (!currentStep) return;
+
     const nextMessages: Message[] = [...messages, { role: "user", text }];
     const nextAnswers = { ...answers, [currentStep.key]: text };
     setMessages(nextMessages);
@@ -63,7 +65,7 @@ export function ChatWidget() {
     setInput("");
 
     if (stepIndex < STEPS.length - 1) {
-      const nextStep = STEPS[stepIndex + 1];
+      const nextStep = STEPS[stepIndex + 1]!;
       setStepIndex(stepIndex + 1);
       setMessages([...nextMessages, { role: "bot", text: nextStep.question }]);
     } else {
