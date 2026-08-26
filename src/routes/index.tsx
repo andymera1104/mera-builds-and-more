@@ -63,13 +63,16 @@ function Home() {
             <p className="font-mono text-xs uppercase tracking-[0.35em] text-amber mb-6">
               ( 01 ) — Roofing · Flooring · Painting · Fence
             </p>
-            <h1 className="font-display leading-[0.85] text-foreground text-[clamp(3.5rem,11vw,9rem)] tracking-tight">
-              BUILT
+            <h1 className="font-display leading-[0.85] text-foreground text-[clamp(3rem,9vw,7rem)] tracking-tight">
+              MERA
               <br />
-              SQUARE.
+              CONSTRUCTIONS
               <br />
-              <span className="text-amber">BUILT TO LAST.</span>
+              <span className="text-amber">LLC</span>
             </h1>
+            <p className="mt-6 font-display text-3xl sm:text-4xl text-foreground/80 tracking-wide">
+              Built Square · Built to Last.
+            </p>
             <p className="mt-8 max-w-[46ch] text-foreground/70 text-lg leading-relaxed text-pretty">
               A family-run crew putting the roof over your head, the tile under your feet, the color
               on your walls, and the fence around your yard. Medido, cuadrado, hecho para durar.
