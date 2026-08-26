@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import heroImg from "@/assets/hero-jobsite.jpg";
+import heroVideo from "@/assets/hero-video.mp4.asset.json";
 import { QuoteForm } from "@/components/QuoteForm";
 
 export const Route = createFileRoute("/")({
@@ -56,10 +56,21 @@ const trades = [
 function Home() {
   return (
     <>
-      <section className="relative overflow-hidden bg-ink">
-        <div className="absolute inset-0 grid-lines opacity-70" />
-        <div className="relative mx-auto max-w-7xl px-5 sm:px-8 py-20 sm:py-28 grid lg:grid-cols-12 gap-10 items-end">
-          <div className="lg:col-span-7 animate-rise">
+      <section className="relative overflow-hidden min-h-[min(90vh,720px)] flex items-end">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/__l5e/assets-v1/f0eb7801-74bd-46cf-ad0f-0766af3a954f/hero-video.mp4"
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        >
+          <source src={(heroVideo as unknown as { url: string }).url} type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-ink/75 z-10" />
+        <div className="absolute inset-0 grid-lines opacity-30 z-10" />
+        <div className="relative z-20 mx-auto max-w-7xl px-5 sm:px-8 py-20 sm:py-28 w-full">
+          <div className="max-w-3xl animate-rise">
             <p className="font-mono text-xs uppercase tracking-[0.35em] text-amber mb-6">
               ( 01 ) — Roofing · Flooring · Painting · Fence
             </p>
@@ -91,15 +102,6 @@ function Home() {
                 Call 928·322·1805
               </a>
             </div>
-          </div>
-          <div className="lg:col-span-5 animate-rise [animation-delay:120ms]">
-            <img
-              src={heroImg}
-              alt="Mera Constructions crew installing roof shingles on a home at dusk"
-              width={1088}
-              height={1280}
-              className="w-full aspect-[4/5] object-cover bg-steel-2 outline-1 -outline-offset-1 outline-white/10 rounded-[min(1vw,14px)]"
-            />
           </div>
         </div>
       </section>
