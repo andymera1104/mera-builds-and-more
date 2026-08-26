@@ -65,7 +65,7 @@ function Home() {
           poster="/__l5e/assets-v1/f0eb7801-74bd-46cf-ad0f-0766af3a954f/hero-video.mp4"
           className="absolute inset-0 w-full h-full object-cover z-0"
         >
-          <source src={heroVideo.url} type="video/mp4" />
+          <source src={(heroVideo as unknown as { url: string }).url} type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-ink/75 z-10" />
         <div className="absolute inset-0 grid-lines opacity-30 z-10" />
