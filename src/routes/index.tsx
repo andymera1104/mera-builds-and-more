@@ -157,7 +157,12 @@ function Home() {
                 to={t.to}
                 className="group bg-steel-2 p-6 rounded-[min(1vw,14px)] outline-1 -outline-offset-1 outline-white/5 hover:-translate-y-1 hover:outline-amber/40 transition-all duration-300 animate-rise"
               >
-                <p className="font-display text-7xl text-amber/90 leading-none">{t.num}</p>
+                <div className="flex items-start justify-between">
+                  <span className="grid place-items-center size-14 rounded-[min(1vw,12px)] bg-amber/15 text-amber">
+                    <t.icon className="size-7" strokeWidth={1.5} />
+                  </span>
+                  <span className="font-display text-5xl text-amber/30 leading-none">{t.num}</span>
+                </div>
                 <h3 className="mt-6 font-display text-3xl text-foreground tracking-wide">{t.title}</h3>
                 <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.15em] text-foreground/50">
                   {t.tags}
