@@ -102,25 +102,36 @@ function Home() {
               <br />
               <span className="text-amber">LLC</span>
             </h1>
-            <p className="mt-6 font-display text-3xl sm:text-4xl text-foreground/80 tracking-wide">
+            <p className="mt-6 font-display text-3xl sm:text-4xl text-amber tracking-wide">
               Built Square · Built to Last.
             </p>
-            <p className="mt-8 max-w-[46ch] text-foreground/70 text-lg leading-relaxed text-pretty">
-              A family-run crew putting the roof over your head, the tile under your feet, the color
-              on your walls, and the fence around your yard. Medido, cuadrado, hecho para durar.
+            <p className="mt-6 max-w-[30ch] font-display text-4xl sm:text-5xl text-foreground leading-[0.95] tracking-tight">
+              Roofs, floors, paint and fences — done right the first time.
+            </p>
+            <p className="mt-6 max-w-[46ch] text-foreground/70 text-lg leading-relaxed text-pretty">
+              Family-run Arizona crew. Free written estimates, licensed &amp; insured, and a real
+              person on the phone. Cotización gratuita en español o inglés.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <a
                 href="#quote"
                 className="bg-amber text-ink font-bold text-base px-7 py-4 rounded-[min(1vw,12px)] hover:bg-paper transition-colors"
               >
-                Get a Free Estimate
+                Cotización gratuita
               </a>
               <a
                 href="tel:9283221805"
+                className="bg-foreground text-ink font-bold text-base px-7 py-4 rounded-[min(1vw,12px)] hover:bg-paper transition-colors"
+              >
+                Llamar ahora · 928·322·1805
+              </a>
+              <a
+                href="https://wa.me/19283221805"
+                target="_blank"
+                rel="noreferrer"
                 className="border border-white/25 text-foreground font-mono text-sm px-6 py-4 rounded-[min(1vw,12px)] hover:border-amber hover:text-amber transition-colors"
               >
-                Call 928·322·1805
+                WhatsApp
               </a>
             </div>
           </div>
