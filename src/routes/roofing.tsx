@@ -2,22 +2,24 @@ import { createFileRoute } from "@tanstack/react-router";
 import roofingImg from "@/assets/roofing.jpg";
 import { ServicePage } from "@/components/ServicePage";
 
+const title = "Roofing in Arizona — Shingles, Lámina & Tile | Mera Constructions LLC";
+const description =
+  "Shingle, metal (lámina) and tile roofing in Arizona: installation, inspection and maintenance by one crew. Free written estimate — call 928-322-1805.";
+
 export const Route = createFileRoute("/roofing")({
   head: () => ({
     meta: [
-      { title: "Roofing — Shingles, Lámina & Tile | Mera Constructions LLC" },
-      {
-        name: "description",
-        content:
-          "Shingle, metal (lámina) and tile roofing: installation, inspection and maintenance. Free estimate — call Mera Constructions LLC at 928-322-1805.",
-      },
-      { property: "og:title", content: "Roofing Services | Mera Constructions LLC" },
-      {
-        property: "og:description",
-        content:
-          "Roof installation, inspection and maintenance for shingles, lámina and tile. Cotización gratuita: 928-322-1805.",
-      },
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/roofing" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: title },
+      { name: "twitter:description", content: description },
     ],
+    links: [{ rel: "canonical", href: "/roofing" }],
   }),
   component: RoofingPage,
 });
