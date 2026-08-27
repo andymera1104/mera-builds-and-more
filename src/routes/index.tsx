@@ -1,21 +1,38 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { Home as HomeIcon, Grid3x3, PaintRoller, Fence } from "lucide-react";
 import heroVideo from "@/assets/hero-video.mp4.asset.json";
 import { QuoteForm } from "@/components/QuoteForm";
+
+const title = "Roofing, Tile, Painting & Fence in Arizona | Mera Constructions LLC";
+const description =
+  "Mera Constructions LLC: roofing (shingles, lámina, tile), tile & porcelanato flooring, house painting, wood fences and residential construction. Free estimates — call 928-322-1805.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Mera Constructions LLC | Roofing, Tile, Painting & Fence in AZ" },
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: title },
+      { name: "twitter:description", content: description },
+    ],
+    links: [{ rel: "canonical", href: "/" }],
+    scripts: [
       {
-        name: "description",
-        content:
-          "Mera Constructions LLC: roofing (shingles, lámina, tile), tile flooring, house painting and wood fence + residential construction. Free estimates — call 928-322-1805.",
-      },
-      { property: "og:title", content: "Mera Constructions LLC | Built Square. Built to Last." },
-      {
-        property: "og:description",
-        content:
-          "Roofing, tile flooring, painting and fence construction across Arizona. Free quotes / cotización gratuita — 928-322-1805.",
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "GeneralContractor",
+          name: "Mera Constructions LLC",
+          telephone: "+1-928-322-1805",
+          areaServed: "Arizona",
+          slogan: "Built Square. Built to Last.",
+          description,
+        }),
       },
     ],
   }),
@@ -26,6 +43,7 @@ const trades = [
   {
     num: "01",
     to: "/roofing",
+    icon: HomeIcon,
     title: "Roofing",
     tags: "Shingles · Lámina · Tile",
     body: "Installation, inspection & maintenance for shingle, metal and tile roofs.",
@@ -33,6 +51,7 @@ const trades = [
   {
     num: "02",
     to: "/flooring",
+    icon: Grid3x3,
     title: "Tile Flooring",
     tags: "Tile · Porcelanato",
     body: "Precision-laid floors, inspected and maintained to stay level.",
@@ -40,6 +59,7 @@ const trades = [
   {
     num: "03",
     to: "/painting",
+    icon: PaintRoller,
     title: "Painting",
     tags: "Interior · Exterior",
     body: "Clean lines and even coats for fresh, lasting color.",
@@ -47,6 +67,7 @@ const trades = [
   {
     num: "04",
     to: "/fence",
+    icon: Fence,
     title: "Fence & Residential",
     tags: "Wood · Residential",
     body: "Wood fences and full residential builds, measured and square.",
