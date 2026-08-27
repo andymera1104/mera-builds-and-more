@@ -2,22 +2,24 @@ import { createFileRoute } from "@tanstack/react-router";
 import flooringImg from "@/assets/flooring.jpg";
 import { ServicePage } from "@/components/ServicePage";
 
+const title = "Tile & Porcelanato Flooring in Arizona | Mera Constructions LLC";
+const description =
+  "Tile and porcelanato flooring installation, inspection and maintenance — level floors with tight grout lines. Free estimate from Mera Constructions LLC: 928-322-1805.";
+
 export const Route = createFileRoute("/flooring")({
   head: () => ({
     meta: [
-      { title: "Tile Flooring — Tile & Porcelanato | Mera Constructions LLC" },
-      {
-        name: "description",
-        content:
-          "Tile and porcelanato flooring: installation, inspection and maintenance, laid level with tight grout lines. Free estimate — 928-322-1805.",
-      },
-      { property: "og:title", content: "Tile & Porcelain Flooring | Mera Constructions LLC" },
-      {
-        property: "og:description",
-        content:
-          "Pisos de tile y porcelanato: instalación, inspección y mantenimiento. Cotización gratuita: 928-322-1805.",
-      },
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/flooring" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: title },
+      { name: "twitter:description", content: description },
     ],
+    links: [{ rel: "canonical", href: "/flooring" }],
   }),
   component: FlooringPage,
 });
