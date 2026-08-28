@@ -27,7 +27,7 @@ export const Route = createFileRoute("/flooring")({
 function FlooringPage() {
   return (
     <ServicePage
-      eyebrow="( 02 ) — Tile Flooring / Pisos"
+      eyebrow="Tile Flooring / Pisos"
       title="Tile Flooring"
       intro="Tile and porcelanato floors laid on a laser-flat base, with tight grout lines and zero lippage. Interior and exterior, kitchens, baths, patios and full-home installs."
       image={flooringImg}

@@ -92,8 +92,8 @@ function Home() {
         <div className="absolute inset-0 grid-lines opacity-30 z-10" />
         <div className="relative z-20 mx-auto max-w-7xl px-5 sm:px-8 py-20 sm:py-28 w-full">
           <div className="max-w-3xl animate-rise">
-            <p className="font-mono text-xs uppercase tracking-[0.35em] text-amber mb-6">
-              ( 01 ) — Roofing · Flooring · Painting · Fence
+<p className="font-mono text-xs uppercase tracking-[0.35em] text-amber mb-6">
+              Roofing · Flooring · Painting · Fence
             </p>
             <h1 className="font-display leading-[0.85] text-foreground text-[clamp(3rem,9vw,7rem)] tracking-tight">
               MERA
@@ -146,8 +146,8 @@ function Home() {
               <br />
               <span className="text-foreground/40">ONE CREW.</span>
             </h2>
-            <p className="hidden sm:block font-mono text-[11px] uppercase tracking-[0.25em] text-amber">
-              ( 02 ) — Services
+<p className="hidden sm:block font-mono text-[11px] uppercase tracking-[0.25em] text-amber">
+              Services
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -203,8 +203,8 @@ function Home() {
 
       <section className="bg-steel py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <p className="font-mono text-xs uppercase tracking-[0.35em] text-amber mb-4">
-            ( 03 ) — Free Estimate
+<p className="font-mono text-xs uppercase tracking-[0.35em] text-amber mb-4">
+            Free Estimate
           </p>
           <h2 className="font-display text-6xl sm:text-7xl text-foreground leading-[0.9] tracking-tight">
             Cotización Gratuita

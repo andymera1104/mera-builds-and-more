@@ -27,7 +27,7 @@ export const Route = createFileRoute("/roofing")({
 function RoofingPage() {
   return (
     <ServicePage
-      eyebrow="( 01 ) — Roofing / Techos"
+      eyebrow="Roofing / Techos"
       title="Roofing"
       intro="Shingles, lámina (metal) and tile roofs built for Arizona heat and monsoon rain. Every roof we touch gets installation, inspection and maintenance done by the same crew."
       image={roofingImg}

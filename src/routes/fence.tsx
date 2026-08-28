@@ -27,7 +27,7 @@ export const Route = createFileRoute("/fence")({
 function FencePage() {
   return (
     <ServicePage
-      eyebrow="( 04 ) — Fence & Residential"
+      eyebrow="Fence & Residential"
       title={"Fence &\nResidential"}
       intro="Custom wood fencing — cedar, pressure-treated and privacy styles — plus full residential construction: new builds, additions and remodels, framed square from the footing up."
       image={fenceImg}
