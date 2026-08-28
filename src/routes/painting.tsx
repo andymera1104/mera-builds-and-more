@@ -27,7 +27,7 @@ export const Route = createFileRoute("/painting")({
 function PaintingPage() {
   return (
     <ServicePage
-      eyebrow="( 03 ) — Painting / Pintura"
+      eyebrow="Painting / Pintura"
       title="House Painting"
       intro="Pintura para casas — interior and exterior. Careful prep, premium coatings and crisp lines that hold up to the Arizona sun year after year."
       image={paintingImg}
