@@ -2,22 +2,24 @@ import { createFileRoute } from "@tanstack/react-router";
 import fenceImg from "@/assets/fence.jpg";
 import { ServicePage } from "@/components/ServicePage";
 
+const title = "Wood Fences & Residential Construction in Arizona | Mera Constructions LLC";
+const description =
+  "Custom wood fence construction plus residential builds, additions and remodels across Arizona. Free estimate from Mera Constructions LLC — 928-322-1805.";
+
 export const Route = createFileRoute("/fence")({
   head: () => ({
     meta: [
-      { title: "Wood Fences & Residential Construction | Mera Constructions LLC" },
-      {
-        name: "description",
-        content:
-          "Custom wood fence construction plus residential builds, additions and remodels. Free estimate from Mera Constructions LLC — 928-322-1805.",
-      },
-      { property: "og:title", content: "Fence & Residential Construction | Mera Constructions LLC" },
-      {
-        property: "og:description",
-        content:
-          "Construcción de fences de madera y construcciones residenciales. Cotización gratuita: 928-322-1805.",
-      },
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/fence" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: title },
+      { name: "twitter:description", content: description },
     ],
+    links: [{ rel: "canonical", href: "/fence" }],
   }),
   component: FencePage,
 });
