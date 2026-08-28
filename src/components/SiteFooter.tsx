@@ -18,7 +18,15 @@ export function SiteFooter() {
           <a href="tel:9283221805" className="block font-display text-3xl text-foreground tracking-wide">
             928·322·1805
           </a>
-          <p className="mt-2 text-sm text-foreground/50">Mon–Sat · 7am–6pm</p>
+          <a
+            href="https://wa.me/19283221805"
+            target="_blank"
+            rel="noreferrer"
+            className="mt-3 inline-block bg-amber/15 text-amber font-mono text-[11px] uppercase tracking-[0.2em] px-4 py-2.5 rounded-[min(1vw,10px)] hover:bg-amber hover:text-ink transition-colors"
+          >
+            Chat por WhatsApp
+          </a>
+          <p className="mt-3 text-sm text-foreground/50">Mon–Sat · 7am–6pm</p>
           <p className="text-sm text-foreground/50">Arizona · Serving the Valley</p>
         </div>
         <div>
