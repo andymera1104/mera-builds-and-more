@@ -45,6 +45,15 @@ export function SiteHeader() {
             928·322·1805
           </a>
           <a
+            href="https://wa.me/19283221805"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Chat on WhatsApp"
+            className="hidden sm:flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.15em] text-foreground/80 border border-white/20 px-3 py-2 rounded-[min(1vw,10px)] hover:border-amber hover:text-amber transition-colors"
+          >
+            WhatsApp
+          </a>
+          <a
             href="#quote"
             className="bg-amber text-ink font-semibold text-sm px-4 py-2 rounded-[min(1vw,10px)] hover:bg-paper transition-colors"
           >
