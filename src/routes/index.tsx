@@ -180,9 +180,9 @@ function Home() {
       <section className="bg-ink border-y border-white/10">
         <div className="mx-auto max-w-7xl px-5 sm:px-8 py-14 grid sm:grid-cols-3 gap-8">
           <div className="flex items-start gap-4">
-            <span className="font-display text-5xl text-amber leading-none">15+</span>
+<span className="font-display text-5xl text-amber leading-none">10+</span>
             <p className="text-foreground/70 text-sm leading-relaxed">
-              Years on the jobsite, family-run since 2009. Trabajamos con las manos, no con atajos.
+              Years on the jobsite, family-run. Trabajamos con las manos, no con atajos.
             </p>
           </div>
           <div className="flex items-start gap-4">

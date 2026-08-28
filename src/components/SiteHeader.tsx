@@ -19,8 +19,8 @@ export function SiteHeader() {
             <p className="font-display text-xl tracking-wide text-foreground">
               MERA <span className="text-amber">CONSTRUCTIONS</span>
             </p>
-            <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/50">
-              LLC · Est. 2009
+<p className="font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/50">
+              LLC · Construction
             </p>
           </div>
         </Link>
