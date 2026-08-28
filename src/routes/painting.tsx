@@ -2,22 +2,24 @@ import { createFileRoute } from "@tanstack/react-router";
 import paintingImg from "@/assets/painting.jpg";
 import { ServicePage } from "@/components/ServicePage";
 
+const title = "House Painting in Arizona — Interior & Exterior | Mera Constructions LLC";
+const description =
+  "Interior and exterior house painting: prep, prime, finish and touch-up service built for the Arizona sun. Free estimate from Mera Constructions LLC — 928-322-1805.";
+
 export const Route = createFileRoute("/painting")({
   head: () => ({
     meta: [
-      { title: "House Painting — Interior & Exterior | Mera Constructions LLC" },
-      {
-        name: "description",
-        content:
-          "Interior and exterior house painting: prep, prime, finish and touch-up service built for the Arizona sun. Free estimate — 928-322-1805.",
-      },
-      { property: "og:title", content: "House Painting | Mera Constructions LLC" },
-      {
-        property: "og:description",
-        content:
-          "Pintura para casas, interior y exterior. Preparación, acabado y mantenimiento. Cotización gratuita: 928-322-1805.",
-      },
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/painting" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: title },
+      { name: "twitter:description", content: description },
     ],
+    links: [{ rel: "canonical", href: "/painting" }],
   }),
   component: PaintingPage,
 });
