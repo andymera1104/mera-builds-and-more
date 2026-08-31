@@ -77,6 +77,36 @@ export type Database = {
         }
         Relationships: []
       }
+      quote_requests: {
+        Row: {
+          address: string | null
+          created_at: string
+          id: string
+          message: string | null
+          name: string
+          phone: string
+          service_type: string
+        }
+        Insert: {
+          address?: string | null
+          created_at?: string
+          id?: string
+          message?: string | null
+          name: string
+          phone: string
+          service_type: string
+        }
+        Update: {
+          address?: string | null
+          created_at?: string
+          id?: string
+          message?: string | null
+          name?: string
+          phone?: string
+          service_type?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
