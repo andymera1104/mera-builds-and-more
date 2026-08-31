@@ -80,9 +80,31 @@ export function QuoteForm({ defaultService }: { defaultService?: string }) {
         </a>
       </div>
       <form
-        onSubmit={(e) => {
+        onSubmit={async (e) => {
           e.preventDefault();
-          setSent(true);
+          const fd = new FormData(e.currentTarget);
+          setBusy(true);
+          setError(null);
+          try {
+            await send({
+              data: {
+                name: String(fd.get("name") ?? ""),
+                phone: String(fd.get("phone") ?? ""),
+                serviceType: String(fd.get("service") ?? ""),
+                address: String(fd.get("address") ?? ""),
+                message: String(fd.get("message") ?? ""),
+              },
+            });
+            setSent(true);
+          } catch (err) {
+            setError(
+              err instanceof Error
+                ? err.message
+                : "No pudimos enviar tu solicitud. Llama al 928-322-1805.",
+            );
+          } finally {
+            setBusy(false);
+          }
         }}
         className="lg:col-span-3 bg-steel-2 p-6 sm:p-8 rounded-[min(1vw,16px)] outline-1 -outline-offset-1 outline-white/5 grid sm:grid-cols-2 gap-4"
       >
