@@ -145,11 +145,17 @@ export function QuoteForm({ defaultService }: { defaultService?: string }) {
             placeholder="Tell us about the job, size, and when you need it."
           />
         </label>
+        {error && (
+          <p className="sm:col-span-2 text-sm text-amber" role="alert">
+            {error}
+          </p>
+        )}
         <button
           type="submit"
-          className="sm:col-span-2 bg-amber text-ink font-bold text-base py-4 rounded-[min(1vw,12px)] hover:bg-paper transition-colors"
+          disabled={busy}
+          className="sm:col-span-2 bg-amber text-ink font-bold text-base py-4 rounded-[min(1vw,12px)] hover:bg-paper transition-colors disabled:opacity-60"
         >
-          Send Free Quote Request
+          {busy ? "Enviando…" : "Send Free Quote Request"}
         </button>
       </form>
     </div>
