@@ -35,6 +35,9 @@ export function SiteHeader() {
               {item.label}
             </Link>
           ))}
+          <Link to="/" hash="booking" className="hover:text-amber transition-colors">
+            Booking
+          </Link>
         </nav>
         <div className="flex items-center gap-3">
           <a

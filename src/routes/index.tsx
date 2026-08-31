@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Home as HomeIcon, Grid3x3, PaintRoller, Fence } from "lucide-react";
 import heroVideo from "@/assets/hero-video.mp4.asset.json";
 import { QuoteForm } from "@/components/QuoteForm";
+import { BookingSection } from "@/components/BookingSection";
 
 const title = "Roofing, Tile, Painting & Fence in Arizona | Mera Constructions LLC";
 const description =
@@ -198,6 +199,16 @@ function Home() {
               inglés.
             </p>
           </div>
+        </div>
+      </section>
+
+      <section id="booking" className="bg-steel-2/40 py-20 sm:py-28 border-b border-white/10">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <p className="font-mono text-xs uppercase tracking-[0.35em] text-amber mb-4">Booking</p>
+          <h2 className="font-display text-6xl sm:text-7xl text-foreground leading-[0.9] tracking-tight">
+            Agenda Tu Visita
+          </h2>
+          <BookingSection />
         </div>
       </section>
 
