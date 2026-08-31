@@ -15,6 +15,9 @@ const labelClass = "font-mono text-[10px] uppercase tracking-[0.2em] text-foregr
 
 export function QuoteForm({ defaultService }: { defaultService?: string }) {
   const [sent, setSent] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const send = useServerFn(submitQuote);
 
   if (sent) {
     return (
