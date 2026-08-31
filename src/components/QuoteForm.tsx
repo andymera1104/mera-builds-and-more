@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useServerFn } from "@tanstack/react-start";
+import { submitQuote } from "@/lib/quote.functions";
 
 const services = [
   "Roofing — Shingles / Lámina / Tile",
@@ -13,6 +15,9 @@ const labelClass = "font-mono text-[10px] uppercase tracking-[0.2em] text-foregr
 
 export function QuoteForm({ defaultService }: { defaultService?: string }) {
   const [sent, setSent] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const send = useServerFn(submitQuote);
 
   if (sent) {
     return (
@@ -75,9 +80,31 @@ export function QuoteForm({ defaultService }: { defaultService?: string }) {
         </a>
       </div>
       <form
-        onSubmit={(e) => {
+        onSubmit={async (e) => {
           e.preventDefault();
-          setSent(true);
+          const fd = new FormData(e.currentTarget);
+          setBusy(true);
+          setError(null);
+          try {
+            await send({
+              data: {
+                name: String(fd.get("name") ?? ""),
+                phone: String(fd.get("phone") ?? ""),
+                serviceType: String(fd.get("service") ?? ""),
+                address: String(fd.get("address") ?? ""),
+                message: String(fd.get("message") ?? ""),
+              },
+            });
+            setSent(true);
+          } catch (err) {
+            setError(
+              err instanceof Error
+                ? err.message
+                : "No pudimos enviar tu solicitud. Llama al 928-322-1805.",
+            );
+          } finally {
+            setBusy(false);
+          }
         }}
         className="lg:col-span-3 bg-steel-2 p-6 sm:p-8 rounded-[min(1vw,16px)] outline-1 -outline-offset-1 outline-white/5 grid sm:grid-cols-2 gap-4"
       >
@@ -118,11 +145,17 @@ export function QuoteForm({ defaultService }: { defaultService?: string }) {
             placeholder="Tell us about the job, size, and when you need it."
           />
         </label>
+        {error && (
+          <p className="sm:col-span-2 text-sm text-amber" role="alert">
+            {error}
+          </p>
+        )}
         <button
           type="submit"
-          className="sm:col-span-2 bg-amber text-ink font-bold text-base py-4 rounded-[min(1vw,12px)] hover:bg-paper transition-colors"
+          disabled={busy}
+          className="sm:col-span-2 bg-amber text-ink font-bold text-base py-4 rounded-[min(1vw,12px)] hover:bg-paper transition-colors disabled:opacity-60"
         >
-          Send Free Quote Request
+          {busy ? "Enviando…" : "Send Free Quote Request"}
         </button>
       </form>
     </div>
