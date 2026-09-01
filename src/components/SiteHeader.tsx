@@ -1,13 +1,17 @@
 import { Link } from "@tanstack/react-router";
+import { Languages } from "lucide-react";
+import { useI18n, type TKey } from "@/i18n";
 
 const nav = [
-  { to: "/roofing", label: "Roofing" },
-  { to: "/flooring", label: "Flooring" },
-  { to: "/painting", label: "Painting" },
-  { to: "/fence", label: "Fence" },
+  { to: "/roofing", key: "nav.roofing" },
+  { to: "/flooring", key: "nav.flooring" },
+  { to: "/painting", key: "nav.painting" },
+  { to: "/fence", key: "nav.fence" },
 ] as const;
 
 export function SiteHeader() {
+  const { t, lang, setLang } = useI18n();
+
   return (
     <div className="sticky top-0 z-50 bg-steel/95 border-b border-white/10 backdrop-blur-sm">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 h-14 flex items-center justify-between">
@@ -19,8 +23,8 @@ export function SiteHeader() {
             <p className="font-display text-xl tracking-wide text-foreground">
               MERA <span className="text-amber">CONSTRUCTIONS</span>
             </p>
-<p className="font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/50">
-              LLC · Construction
+            <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/50">
+              {t("header.tagline")}
             </p>
           </div>
         </Link>
@@ -32,14 +36,23 @@ export function SiteHeader() {
               className="hover:text-amber transition-colors"
               activeProps={{ className: "text-amber" }}
             >
-              {item.label}
+              {t(item.key as TKey)}
             </Link>
           ))}
           <Link to="/" hash="booking" className="hover:text-amber transition-colors">
-            Booking
+            {t("nav.booking")}
           </Link>
         </nav>
         <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => setLang(lang === "es" ? "en" : "es")}
+            aria-label={t("lang.switch")}
+            className="flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.15em] text-foreground/80 border border-white/20 px-2.5 py-2 rounded-[min(1vw,10px)] hover:border-amber hover:text-amber transition-colors"
+          >
+            <Languages className="size-3.5" strokeWidth={1.75} />
+            {lang === "es" ? "EN" : "ES"}
+          </button>
           <a
             href="tel:9283221805"
             className="hidden sm:flex items-center gap-2 font-mono text-xs tracking-wide text-foreground/80 hover:text-amber transition-colors"
@@ -51,16 +64,16 @@ export function SiteHeader() {
             href="https://wa.me/19283221805"
             target="_blank"
             rel="noreferrer"
-            aria-label="Chat on WhatsApp"
+            aria-label="WhatsApp"
             className="hidden sm:flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.15em] text-foreground/80 border border-white/20 px-3 py-2 rounded-[min(1vw,10px)] hover:border-amber hover:text-amber transition-colors"
           >
-            WhatsApp
+            {t("common.whatsapp")}
           </a>
           <a
             href="#quote"
             className="bg-amber text-ink font-semibold text-sm px-4 py-2 rounded-[min(1vw,10px)] hover:bg-paper transition-colors"
           >
-            Free Quote
+            {t("header.quote")}
           </a>
         </div>
       </div>
