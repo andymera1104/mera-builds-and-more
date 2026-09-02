@@ -73,9 +73,9 @@ Write a short, friendly confirmation message (max 3 sentences). Thank them, say 
       const json = (await response.json()) as {
         choices?: { message?: { content?: string } }[];
       };
-      return json.choices?.[0]?.message?.content?.trim() || "¡Gracias! Te llamamos pronto.";
+      return json.choices?.[0]?.message?.content?.trim() || fallback;
     } catch (err) {
       console.error("[ai confirmation]", err);
-      return "¡Gracias! Revisamos tu proyecto y te llamamos al " + data.phone;
+      return fallback;
     }
   });
