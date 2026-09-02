@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import { ChatWidget } from "../components/ChatWidget";
+import { LanguageProvider } from "../i18n";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
@@ -130,14 +131,16 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="min-h-screen flex flex-col bg-steel">
-        <SiteHeader />
-        <main className="flex-1">
-          <Outlet />
-        </main>
-        <SiteFooter />
-        <ChatWidget />
-      </div>
+      <LanguageProvider>
+        <div className="min-h-screen flex flex-col bg-steel">
+          <SiteHeader />
+          <main className="flex-1">
+            <Outlet />
+          </main>
+          <SiteFooter />
+          <ChatWidget />
+        </div>
+      </LanguageProvider>
     </QueryClientProvider>
   );
 }
