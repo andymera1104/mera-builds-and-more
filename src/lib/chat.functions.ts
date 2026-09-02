@@ -6,11 +6,17 @@ const submitChatLeadInput = z.object({
   dimensions: z.string().trim().max(500),
   neededDates: z.string().trim().max(300),
   phone: z.string().trim().min(7).max(30),
+  language: z.enum(["en", "es"]).optional().default("es"),
 });
 
 export const submitChatLead = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => submitChatLeadInput.parse(input))
   .handler(async ({ data }) => {
+    const isEs = data.language !== "en";
+    const fallback = isEs
+      ? "¡Gracias! Revisamos tu proyecto y te llamamos al " + data.phone
+      : "Thanks! We'll review your project and call you at " + data.phone;
+
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
     const { error } = await supabaseAdmin.from("chat_leads").insert({
@@ -22,23 +28,28 @@ export const submitChatLead = createServerFn({ method: "POST" })
 
     if (error) {
       console.error("[chat lead insert]", error);
-      throw new Error("No pudimos guardar tu solicitud. Intenta de nuevo.");
+      throw new Error(
+        isEs
+          ? "No pudimos guardar tu solicitud. Intenta de nuevo."
+          : "We couldn't save your request. Please try again.",
+      );
     }
 
     const lovableApiKey = process.env["LOVABLE_API_KEY"];
     if (!lovableApiKey) {
-      return "¡Gracias! Revisamos tu proyecto y te llamamos al " + data.phone;
+      return fallback;
     }
 
-    const prompt = `El usuario acaba de dejar sus datos para una cotización en Mera Constructions LLC.
+    const prompt = `A visitor just submitted their details for a quote at Mera Constructions LLC.
 
-Datos:
-- Tipo de trabajo: ${data.serviceType}
-- Dimensiones: ${data.dimensions || "no especificadas"}
-- Fechas necesarias: ${data.neededDates || "no especificadas"}
-- Teléfono: ${data.phone}
+Details:
+- Type of work: ${data.serviceType}
+- Dimensions: ${data.dimensions || "not specified"}
+- Needed dates: ${data.neededDates || "not specified"}
+- Phone: ${data.phone}
 
-Escribe un mensaje corto y amigable de confirmación (máximo 3 oraciones). Agradece la información, di que revisaremos el proyecto y que llamaremos al teléfono proporcionado. Responde en el mismo idioma que usó el usuario.`;
+Write a short, friendly confirmation message (max 3 sentences). Thank them, say we'll review the project and call the phone number provided. Reply in ${isEs ? "Spanish" : "English"}.`;
+
 
     try {
       const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
