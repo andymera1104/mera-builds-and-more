@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import paintingImg from "@/assets/painting.jpg";
 import { ServicePage } from "@/components/ServicePage";
+import { useI18n } from "@/i18n";
 
 const title = "House Painting in Arizona — Interior & Exterior | Mera Constructions LLC";
 const description =
@@ -25,32 +26,33 @@ export const Route = createFileRoute("/painting")({
 });
 
 function PaintingPage() {
+  const { t } = useI18n();
   return (
     <ServicePage
-      eyebrow="Painting / Pintura"
-      title="House Painting"
-      intro="Pintura para casas — interior and exterior. Careful prep, premium coatings and crisp lines that hold up to the Arizona sun year after year."
+      eyebrow={t("painting.eyebrow")}
+      title={t("painting.title")}
+      intro={t("painting.intro")}
       image={paintingImg}
-      imageAlt="Painter rolling fresh exterior paint on a stucco house wall"
+      imageAlt={t("painting.alt")}
       subServices={[
         {
           key: "A",
-          title: "Preparation / Preparación",
-          body: "Wash, scrape, patch, caulk and mask — the step that decides how long the paint lasts.",
+          title: t("painting.s1.title"),
+          body: t("painting.s1.body"),
         },
         {
           key: "B",
-          title: "Painting / Pintado",
-          body: "Interior walls, ceilings, trim and doors; exterior stucco, siding and fascia with UV-rated coatings.",
+          title: t("painting.s2.title"),
+          body: t("painting.s2.body"),
         },
         {
           key: "C",
-          title: "Maintenance / Mantenimiento",
-          body: "Yearly walkthroughs, touch-ups and recoating so your color stays true.",
+          title: t("painting.s3.title"),
+          body: t("painting.s3.body"),
         },
       ]}
-      steps={["Call or Request", "Color & Measure", "Written Quote", "Clean Finish"]}
-      quoteService="Painting — Interior / Exterior"
+      steps={[t("step.request"), t("step.color"), t("step.quote"), t("step.finish")]}
+      quoteService={t("service.painting")}
     />
   );
 }
