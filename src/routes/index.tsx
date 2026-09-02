@@ -3,6 +3,7 @@ import { Home as HomeIcon, Grid3x3, PaintRoller, Fence } from "lucide-react";
 import heroVideo from "@/assets/hero-video.mp4.asset.json";
 import { QuoteForm } from "@/components/QuoteForm";
 import { BookingSection } from "@/components/BookingSection";
+import { useI18n, type TKey } from "@/i18n";
 
 const title = "Roofing, Tile, Painting & Fence in Arizona | Mera Constructions LLC";
 const description =
@@ -41,41 +42,14 @@ export const Route = createFileRoute("/")({
 });
 
 const trades = [
-  {
-    num: "01",
-    to: "/roofing",
-    icon: HomeIcon,
-    title: "Roofing",
-    tags: "Shingles · Lámina · Tile",
-    body: "Installation, inspection & maintenance for shingle, metal and tile roofs.",
-  },
-  {
-    num: "02",
-    to: "/flooring",
-    icon: Grid3x3,
-    title: "Tile Flooring",
-    tags: "Tile · Porcelanato",
-    body: "Precision-laid floors, inspected and maintained to stay level.",
-  },
-  {
-    num: "03",
-    to: "/painting",
-    icon: PaintRoller,
-    title: "Painting",
-    tags: "Interior · Exterior",
-    body: "Clean lines and even coats for fresh, lasting color.",
-  },
-  {
-    num: "04",
-    to: "/fence",
-    icon: Fence,
-    title: "Fence & Residential",
-    tags: "Wood · Residential",
-    body: "Wood fences and full residential builds, measured and square.",
-  },
+  { num: "01", to: "/roofing", icon: HomeIcon, id: "roofing" },
+  { num: "02", to: "/flooring", icon: Grid3x3, id: "flooring" },
+  { num: "03", to: "/painting", icon: PaintRoller, id: "painting" },
+  { num: "04", to: "/fence", icon: Fence, id: "fence" },
 ] as const;
 
 function Home() {
+  const { t } = useI18n();
   return (
     <>
       <section className="relative overflow-hidden min-h-[min(90vh,720px)] flex items-end">
@@ -94,7 +68,7 @@ function Home() {
         <div className="relative z-20 mx-auto max-w-7xl px-5 sm:px-8 py-20 sm:py-28 w-full">
           <div className="max-w-3xl animate-rise">
 <p className="font-mono text-xs uppercase tracking-[0.35em] text-amber mb-6">
-              Roofing · Flooring · Painting · Fence
+              {t("home.eyebrow")}
             </p>
             <h1 className="font-display leading-[0.85] text-foreground text-[clamp(3rem,9vw,7rem)] tracking-tight">
               MERA
@@ -104,27 +78,26 @@ function Home() {
               <span className="text-amber">LLC</span>
             </h1>
             <p className="mt-6 font-display text-3xl sm:text-4xl text-amber tracking-wide">
-              Built Square · Built to Last.
+              {t("home.slogan")}
             </p>
             <p className="mt-6 max-w-[30ch] font-display text-4xl sm:text-5xl text-foreground leading-[0.95] tracking-tight">
-              Roofs, floors, paint and fences — done right the first time.
+              {t("home.headline")}
             </p>
             <p className="mt-6 max-w-[46ch] text-foreground/70 text-lg leading-relaxed text-pretty">
-              Family-run Arizona crew. Free written estimates, licensed &amp; insured, and a real
-              person on the phone. Cotización gratuita en español o inglés.
+              {t("home.sub")}
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <a
                 href="#quote"
                 className="bg-amber text-ink font-bold text-base px-7 py-4 rounded-[min(1vw,12px)] hover:bg-paper transition-colors"
               >
-                Cotización gratuita
+                {t("home.cta.quote")}
               </a>
               <a
                 href="tel:9283221805"
                 className="bg-foreground text-ink font-bold text-base px-7 py-4 rounded-[min(1vw,12px)] hover:bg-paper transition-colors"
               >
-                Llamar ahora · 928·322·1805
+                {t("home.cta.call")}
               </a>
               <a
                 href="https://wa.me/19283221805"
@@ -132,7 +105,7 @@ function Home() {
                 rel="noreferrer"
                 className="border border-white/25 text-foreground font-mono text-sm px-6 py-4 rounded-[min(1vw,12px)] hover:border-amber hover:text-amber transition-colors"
               >
-                WhatsApp
+                {t("common.whatsapp")}
               </a>
             </div>
           </div>
@@ -143,34 +116,34 @@ function Home() {
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="flex items-end justify-between border-b border-white/10 pb-6 mb-12">
             <h2 className="font-display text-5xl sm:text-6xl text-foreground leading-none tracking-tight">
-              FOUR TRADES.
+              {t("home.trades.title1")}
               <br />
-              <span className="text-foreground/40">ONE CREW.</span>
+              <span className="text-foreground/40">{t("home.trades.title2")}</span>
             </h2>
 <p className="hidden sm:block font-mono text-[11px] uppercase tracking-[0.25em] text-amber">
-              Services
+              {t("home.trades.label")}
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {trades.map((t) => (
+            {trades.map((item) => (
               <Link
-                key={t.num}
-                to={t.to}
+                key={item.num}
+                to={item.to}
                 className="group bg-steel-2 p-6 rounded-[min(1vw,14px)] outline-1 -outline-offset-1 outline-white/5 hover:-translate-y-1 hover:outline-amber/40 transition-all duration-300 animate-rise"
               >
                 <div className="flex items-start justify-between">
                   <span className="grid place-items-center size-14 rounded-[min(1vw,12px)] bg-amber/15 text-amber">
-                    <t.icon className="size-7" strokeWidth={1.5} />
+                    <item.icon className="size-7" strokeWidth={1.5} />
                   </span>
-                  <span className="font-display text-5xl text-amber/30 leading-none">{t.num}</span>
+                  <span className="font-display text-5xl text-amber/30 leading-none">{item.num}</span>
                 </div>
-                <h3 className="mt-6 font-display text-3xl text-foreground tracking-wide">{t.title}</h3>
+                <h3 className="mt-6 font-display text-3xl text-foreground tracking-wide">{t(`trade.${item.id}.title` as TKey)}</h3>
                 <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.15em] text-foreground/50">
-                  {t.tags}
+                  {t(`trade.${item.id}.tags` as TKey)}
                 </p>
-                <p className="mt-4 text-sm text-foreground/60 leading-relaxed">{t.body}</p>
+                <p className="mt-4 text-sm text-foreground/60 leading-relaxed">{t(`trade.${item.id}.body` as TKey)}</p>
                 <span className="mt-5 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.15em] text-amber group-hover:gap-3 transition-all">
-                  View trade →
+                  {t("home.trades.view")}
                 </span>
               </Link>
             ))}
@@ -183,20 +156,19 @@ function Home() {
           <div className="flex items-start gap-4">
 <span className="font-display text-5xl text-amber leading-none">10+</span>
             <p className="text-foreground/70 text-sm leading-relaxed">
-              Years on the jobsite, family-run. Trabajamos con las manos, no con atajos.
+              {t("home.stat1")}
             </p>
           </div>
           <div className="flex items-start gap-4">
             <span className="font-display text-5xl text-amber leading-none">100%</span>
             <p className="text-foreground/70 text-sm leading-relaxed">
-              Licensed &amp; insured. Every estimate free, every job walked and inspected with you.
+              {t("home.stat2")}
             </p>
           </div>
           <div className="flex items-start gap-4">
             <span className="font-display text-5xl text-amber leading-none">48h</span>
             <p className="text-foreground/70 text-sm leading-relaxed">
-              On-site measurements and a written quote back in two business days — en español o
-              inglés.
+              {t("home.stat3")}
             </p>
           </div>
         </div>
@@ -204,9 +176,9 @@ function Home() {
 
       <section id="booking" className="bg-steel-2/40 py-20 sm:py-28 border-b border-white/10">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <p className="font-mono text-xs uppercase tracking-[0.35em] text-amber mb-4">Booking</p>
+          <p className="font-mono text-xs uppercase tracking-[0.35em] text-amber mb-4">{t("home.booking.label")}</p>
           <h2 className="font-display text-6xl sm:text-7xl text-foreground leading-[0.9] tracking-tight">
-            Agenda Tu Visita
+            {t("home.booking.title")}
           </h2>
           <BookingSection />
         </div>
@@ -215,10 +187,10 @@ function Home() {
       <section className="bg-steel py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
 <p className="font-mono text-xs uppercase tracking-[0.35em] text-amber mb-4">
-            Free Estimate
+            {t("home.quote.label")}
           </p>
           <h2 className="font-display text-6xl sm:text-7xl text-foreground leading-[0.9] tracking-tight">
-            Cotización Gratuita
+            {t("home.quote.title")}
           </h2>
           <QuoteForm />
         </div>
