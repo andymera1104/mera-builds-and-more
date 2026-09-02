@@ -1,5 +1,6 @@
 import { QuoteForm } from "./QuoteForm";
 import { useI18n } from "@/i18n";
+import { useState } from "react";
 
 type SubService = { key: string; title: string; body: string };
 
@@ -9,6 +10,7 @@ export function ServicePage({
   intro,
   image,
   imageAlt,
+  video,
   subServices,
   steps,
   quoteService,
@@ -18,11 +20,13 @@ export function ServicePage({
   intro: string;
   image: string;
   imageAlt: string;
+  video: string;
   subServices: SubService[];
   steps: string[];
   quoteService: string;
 }) {
   const { t } = useI18n();
+  const [videoFailed, setVideoFailed] = useState(false);
 
   return (
     <section className="bg-steel py-20 sm:py-28">
@@ -36,14 +40,31 @@ export function ServicePage({
         </p>
 
         <div className="mt-12 grid lg:grid-cols-2 gap-10 items-center">
-          <img
-            src={image}
-            alt={imageAlt}
-            width={1024}
-            height={912}
-            loading="lazy"
-            className="w-full aspect-[8/7] object-cover bg-steel-2 outline-1 -outline-offset-1 outline-white/10 rounded-[min(1vw,14px)]"
-          />
+          <div className="relative w-full aspect-[8/7] overflow-hidden bg-steel-2 outline-1 -outline-offset-1 outline-white/10 rounded-[min(1vw,14px)]">
+            <img
+              src={image}
+              alt={imageAlt}
+              width={1024}
+              height={912}
+              loading="lazy"
+              className="absolute inset-0 size-full object-cover"
+            />
+            {!videoFailed && (
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                poster={image}
+                aria-label={imageAlt}
+                onError={() => setVideoFailed(true)}
+                className="absolute inset-0 size-full object-cover motion-reduce:hidden"
+              >
+                <source src={video} type="video/mp4" />
+              </video>
+            )}
+          </div>
           <div className="space-y-5">
             {subServices.map((s, i) => (
               <div
