@@ -1,4 +1,5 @@
 import { QuoteForm } from "./QuoteForm";
+import { useI18n } from "@/i18n";
 
 type SubService = { key: string; title: string; body: string };
 
@@ -21,11 +22,13 @@ export function ServicePage({
   steps: string[];
   quoteService: string;
 }) {
+  const { t } = useI18n();
+
   return (
     <section className="bg-steel py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <p className="font-mono text-xs uppercase tracking-[0.35em] text-amber mb-4">{eyebrow}</p>
-        <h1 className="font-display text-6xl sm:text-7xl text-foreground leading-[0.9] tracking-tight">
+        <h1 className="font-display text-6xl sm:text-7xl text-foreground leading-[0.9] tracking-tight whitespace-pre-line">
           {title}
         </h1>
         <p className="mt-6 max-w-[60ch] text-foreground/70 text-lg leading-relaxed text-pretty">
@@ -66,7 +69,7 @@ export function ServicePage({
               className={`p-5 rounded-[min(1vw,12px)] text-ink ${i === steps.length - 1 ? "bg-amber" : "bg-paper"}`}
             >
               <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink/50">
-                Step 0{i + 1}
+                {t("sp.step")} 0{i + 1}
               </span>
               <p className="mt-2 font-display text-2xl tracking-wide">{step}</p>
             </div>
