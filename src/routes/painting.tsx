@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import paintingImg from "@/assets/painting.jpg";
+import paintingVideo from "@/assets/painting-video.mp4.asset.json";
 import { ServicePage } from "@/components/ServicePage";
 import { useI18n } from "@/i18n";
 
@@ -34,6 +35,7 @@ function PaintingPage() {
       intro={t("painting.intro")}
       image={paintingImg}
       imageAlt={t("painting.alt")}
+      video={paintingVideo.url}
       subServices={[
         {
           key: "A",
