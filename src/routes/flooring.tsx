@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import flooringImg from "@/assets/flooring.jpg";
 import { ServicePage } from "@/components/ServicePage";
+import { useI18n } from "@/i18n";
 
 const title = "Tile & Porcelanato Flooring in Arizona | Mera Constructions LLC";
 const description =
@@ -25,32 +26,33 @@ export const Route = createFileRoute("/flooring")({
 });
 
 function FlooringPage() {
+  const { t } = useI18n();
   return (
     <ServicePage
-      eyebrow="Tile Flooring / Pisos"
-      title="Tile Flooring"
-      intro="Tile and porcelanato floors laid on a laser-flat base, with tight grout lines and zero lippage. Interior and exterior, kitchens, baths, patios and full-home installs."
+      eyebrow={t("flooring.eyebrow")}
+      title={t("flooring.title")}
+      intro={t("flooring.intro")}
       image={flooringImg}
-      imageAlt="Tile setter installing large porcelain floor tiles"
+      imageAlt={t("flooring.alt")}
       subServices={[
         {
           key: "A",
-          title: "Installation / Instalación",
-          body: "Ceramic tile and porcelanato set over a leveled, prepped substrate with proper waterproofing.",
+          title: t("flooring.s1.title"),
+          body: t("flooring.s1.body"),
         },
         {
           key: "B",
-          title: "Inspection / Inspección",
-          body: "Level, hollow-spot and grout checks — loose tile and moisture problems caught before they spread.",
+          title: t("flooring.s2.title"),
+          body: t("flooring.s2.body"),
         },
         {
           key: "C",
-          title: "Maintenance / Mantenimiento",
-          body: "Regrouting, sealing and tile replacement so floors keep looking new for years.",
+          title: t("flooring.s3.title"),
+          body: t("flooring.s3.body"),
         },
       ]}
-      steps={["Call or Request", "On-Site Measure", "Written Quote", "Laid Level"]}
-      quoteService="Tile Flooring — Tile / Porcelanato"
+      steps={[t("step.request"), t("step.measure"), t("step.quote"), t("step.level")]}
+      quoteService={t("service.flooring")}
     />
   );
 }

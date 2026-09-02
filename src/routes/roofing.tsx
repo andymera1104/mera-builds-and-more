@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import roofingImg from "@/assets/roofing.jpg";
 import { ServicePage } from "@/components/ServicePage";
+import { useI18n } from "@/i18n";
 
 const title = "Roofing in Arizona — Shingles, Lámina & Tile | Mera Constructions LLC";
 const description =
@@ -25,32 +26,33 @@ export const Route = createFileRoute("/roofing")({
 });
 
 function RoofingPage() {
+  const { t } = useI18n();
   return (
     <ServicePage
-      eyebrow="Roofing / Techos"
-      title="Roofing"
-      intro="Shingles, lámina (metal) and tile roofs built for Arizona heat and monsoon rain. Every roof we touch gets installation, inspection and maintenance done by the same crew."
+      eyebrow={t("roofing.eyebrow")}
+      title={t("roofing.title")}
+      intro={t("roofing.intro")}
       image={roofingImg}
-      imageAlt="Roofer laying asphalt shingles on a residential roof"
+      imageAlt={t("roofing.alt")}
       subServices={[
         {
           key: "A",
-          title: "Installation / Instalación",
-          body: "Shingles, lámina (metal) and tile — installed square with proper flashing, underlayment and ventilation.",
+          title: t("roofing.s1.title"),
+          body: t("roofing.s1.body"),
         },
         {
           key: "B",
-          title: "Inspection / Inspección",
-          body: "Full roof check after storms and each season — leaks, lifting shingles and drainage found early.",
+          title: t("roofing.s2.title"),
+          body: t("roofing.s2.body"),
         },
         {
           key: "C",
-          title: "Maintenance / Mantenimiento",
-          body: "Gutter clearing, sealant and patch repairs that keep the roof working for decades.",
+          title: t("roofing.s3.title"),
+          body: t("roofing.s3.body"),
         },
       ]}
-      steps={["Call or Request", "On-Site Measure", "Written Quote", "Built Square"]}
-      quoteService="Roofing — Shingles / Lámina / Tile"
+      steps={[t("step.request"), t("step.measure"), t("step.quote"), t("step.built")]}
+      quoteService={t("service.roofing")}
     />
   );
 }

@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import fenceImg from "@/assets/fence.jpg";
 import { ServicePage } from "@/components/ServicePage";
+import { useI18n } from "@/i18n";
 
 const title = "Wood Fences & Residential Construction in Arizona | Mera Constructions LLC";
 const description =
@@ -25,32 +26,33 @@ export const Route = createFileRoute("/fence")({
 });
 
 function FencePage() {
+  const { t } = useI18n();
   return (
     <ServicePage
-      eyebrow="Fence & Residential"
-      title={"Fence &\nResidential"}
-      intro="Custom wood fencing — cedar, pressure-treated and privacy styles — plus full residential construction: new builds, additions and remodels, framed square from the footing up."
+      eyebrow={t("fence.eyebrow")}
+      title={t("fence.title")}
+      intro={t("fence.intro")}
       image={fenceImg}
-      imageAlt="New cedar wood privacy fence with a residential framing project behind it"
+      imageAlt={t("fence.alt")}
       subServices={[
         {
           key: "A",
-          title: "Wood Fence / Fence de Madera",
-          body: "Privacy, picket and ranch-style fences set in concrete footings with straight, plumb posts.",
+          title: t("fence.s1.title"),
+          body: t("fence.s1.body"),
         },
         {
           key: "B",
-          title: "Residential Construction",
-          body: "New residential builds, additions, patios and remodels — framing, roofing and finish work in-house.",
+          title: t("fence.s2.title"),
+          body: t("fence.s2.body"),
         },
         {
           key: "C",
-          title: "Inspection & Maintenance",
-          body: "Post, gate and structure checks, board replacement, staining and sealing.",
+          title: t("fence.s3.title"),
+          body: t("fence.s3.body"),
         },
       ]}
-      steps={["Call or Request", "On-Site Measure", "Written Quote", "Built Square"]}
-      quoteService="Fence & Residential Construction"
+      steps={[t("step.request"), t("step.measure"), t("step.quote"), t("step.built")]}
+      quoteService={t("service.fence")}
     />
   );
 }
