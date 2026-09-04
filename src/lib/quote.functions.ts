@@ -27,5 +27,20 @@ export const submitQuote = createServerFn({ method: "POST" })
       throw new Error("No pudimos enviar tu solicitud. Llama al 928-322-1805.");
     }
 
+    const { sendNotification } = await import("./notify.server");
+    await sendNotification(
+      `Nueva cotización: ${data.serviceType} — ${data.name}`,
+      [
+        "Nueva solicitud de cotización desde el sitio web.",
+        "",
+        `Nombre: ${data.name}`,
+        `Teléfono: ${data.phone}`,
+        `Servicio: ${data.serviceType}`,
+        `Dirección: ${data.address || "-"}`,
+        `Mensaje: ${data.message || "-"}`,
+      ].join("\n"),
+    );
+
     return { ok: true as const };
   });
+
