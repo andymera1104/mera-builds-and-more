@@ -34,5 +34,21 @@ export const submitBooking = createServerFn({ method: "POST" })
       throw new Error("No pudimos agendar tu visita. Intenta de nuevo o llama al 928-322-1805.");
     }
 
+    const { sendNotification } = await import("./notify.server");
+    await sendNotification(
+      `Nueva cita: ${data.serviceType} — ${data.preferredDate}`,
+      [
+        "Nueva reserva desde el sitio web.",
+        "",
+        `Nombre: ${data.name}`,
+        `Teléfono: ${data.phone}`,
+        `Servicio: ${data.serviceType}`,
+        `Fecha: ${data.preferredDate} ${data.preferredTime || ""}`.trim(),
+        `Dirección: ${data.address || "-"}`,
+        `Notas: ${data.notes || "-"}`,
+      ].join("\n"),
+    );
+
     return { ok: true as const };
   });
+
