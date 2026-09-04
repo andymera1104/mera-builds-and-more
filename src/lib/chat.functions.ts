@@ -35,6 +35,21 @@ export const submitChatLead = createServerFn({ method: "POST" })
       );
     }
 
+    const { sendNotification } = await import("./notify.server");
+    await sendNotification(
+      `Nuevo prospecto del chat: ${data.serviceType}`,
+      [
+        "Nuevo prospecto desde el chat del sitio web.",
+        "",
+        `Servicio: ${data.serviceType}`,
+        `Dimensiones: ${data.dimensions}`,
+        `Fechas: ${data.neededDates}`,
+        `Teléfono: ${data.phone}`,
+      ].join("\n"),
+    );
+
+
+
     const lovableApiKey = process.env["LOVABLE_API_KEY"];
     if (!lovableApiKey) {
       return fallback;
