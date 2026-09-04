@@ -38,17 +38,29 @@ Nunca subas el archivo `.env` con claves privadas al repositorio.
 
 ```sh
 npm install      # o bun install
-npm run build    # genera la carpeta .output
+npm run build    # genera dist/client (archivos publicos) y dist/server (servidor)
 npm run preview  # prueba local del build
 ```
 
 - Comando de build: `npm run build`
-- Carpeta de salida: `.output`
+- Carpeta de publicacion: `dist/client`
+- Carpeta del servidor: `dist/server`
 - Node: 20 o superior
+
+Si el deploy falla con **"Deploy directory 'dist/client' does not exist"**, es porque
+el hosting no ejecuto el build o fallo antes de terminar. Revisa que:
+
+1. El comando de build sea `npm run build` (no `npm run dev` ni vacio).
+2. La version de Node sea 20 o superior.
+3. Las variables de entorno esten cargadas antes del build.
+4. La carpeta base del proyecto sea la raiz del repositorio.
+
+En Netlify ya queda todo configurado con el archivo `netlify.toml` incluido.
 
 Este sitio no es HTML estatico: usa servidor (formularios, chat, correos), asi que
 necesita un hosting que ejecute Node o Cloudflare Workers (Cloudflare Pages/Workers,
 Netlify, Vercel, Railway). Un hosting compartido tipo cPanel solo con archivos no sirve.
+
 
 ## 4. Publicar
 
