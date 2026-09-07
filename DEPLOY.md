@@ -38,24 +38,33 @@ Nunca subas el archivo `.env` con claves privadas al repositorio.
 
 ```sh
 npm install      # o bun install
-npm run build    # genera dist/client (archivos publicos) y dist/server (servidor)
+npm run build    # genera la carpeta publica y el servidor
 npm run preview  # prueba local del build
 ```
 
 - Comando de build: `npm run build`
-- Carpeta de publicacion: `dist/client`
-- Carpeta del servidor: `dist/server`
 - Node: 20 o superior
 
-Si el deploy falla con **"Deploy directory 'dist/client' does not exist"**, es porque
-el hosting no ejecuto el build o fallo antes de terminar. Revisa que:
+La carpeta de salida depende del hosting (se elige con la variable `NITRO_PRESET`):
+
+| Hosting | `NITRO_PRESET` | Carpeta publica | Servidor |
+| --- | --- | --- | --- |
+| Netlify | `netlify` | `dist` | `.netlify/functions-internal` (automatico) |
+| Cloudflare Workers | `cloudflare-module` | `dist/client` | `dist/server` |
+| Vercel | `vercel` | `.vercel/output` (automatico) | automatico |
+| Node propio (Railway, VPS) | `node-server` | `dist/public` | `node dist/server/index.mjs` |
+
+En Netlify ya queda todo configurado con el archivo `netlify.toml` incluido
+(`publish = "dist"` y `NITRO_PRESET = "netlify"`). No cambies la carpeta de
+publicacion a `dist/client`: en Netlify no existe y el deploy falla con
+**"Deploy directory 'dist/client' does not exist"**.
+
+Si el build falla antes de terminar, revisa que:
 
 1. El comando de build sea `npm run build` (no `npm run dev` ni vacio).
 2. La version de Node sea 20 o superior.
 3. Las variables de entorno esten cargadas antes del build.
 4. La carpeta base del proyecto sea la raiz del repositorio.
-
-En Netlify ya queda todo configurado con el archivo `netlify.toml` incluido.
 
 Este sitio no es HTML estatico: usa servidor (formularios, chat, correos), asi que
 necesita un hosting que ejecute Node o Cloudflare Workers (Cloudflare Pages/Workers,
