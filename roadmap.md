@@ -1,4 +1,4 @@
 # Roadmap
 
-- [ ] Arreglar deploy en Netlify (dist/client no existe con NITRO_PRESET=netlify)
-- [ ] Dejar repo git actualizado con la config correcta
+- [x] Arreglar deploy en Netlify (publish = dist, servidor en .netlify/functions-internal)
+- [x] Dejar repo git actualizado con la config correcta
