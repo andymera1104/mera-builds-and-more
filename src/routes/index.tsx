@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Home as HomeIcon, Grid3x3, PaintRoller, Fence } from "lucide-react";
-import heroVideo from "@/assets/hero-video.mp4.asset.json";
+import heroPoster from "@/assets/hero-jobsite.jpg";
 import { QuoteForm } from "@/components/QuoteForm";
 import { BookingSection } from "@/components/BookingSection";
 import { useI18n, type TKey } from "@/i18n";
@@ -58,10 +58,10 @@ function Home() {
           muted
           loop
           playsInline
-          poster="/__l5e/assets-v1/f0eb7801-74bd-46cf-ad0f-0766af3a954f/hero-video.mp4"
+          poster={heroPoster}
           className="absolute inset-0 w-full h-full object-cover z-0"
         >
-          <source src={(heroVideo as unknown as { url: string }).url} type="video/mp4" />
+          <source src="/videos/hero.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-ink/75 z-10" />
         <div className="absolute inset-0 grid-lines opacity-30 z-10" />
