@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import flooringImg from "@/assets/flooring.jpg";
-import flooringVideo from "@/assets/flooring-video.mp4.asset.json";
 import { ServicePage } from "@/components/ServicePage";
 import { useI18n } from "@/i18n";
 
@@ -35,7 +34,7 @@ function FlooringPage() {
       intro={t("flooring.intro")}
       image={flooringImg}
       imageAlt={t("flooring.alt")}
-      video={flooringVideo.url}
+      video="/videos/flooring.mp4"
       subServices={[
         {
           key: "A",
