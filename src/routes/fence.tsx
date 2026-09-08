@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import fenceImg from "@/assets/fence.jpg";
-import fenceVideo from "@/assets/fence-video.mp4.asset.json";
 import { ServicePage } from "@/components/ServicePage";
 import { useI18n } from "@/i18n";
 
@@ -35,7 +34,7 @@ function FencePage() {
       intro={t("fence.intro")}
       image={fenceImg}
       imageAlt={t("fence.alt")}
-      video={fenceVideo.url}
+      video="/videos/fence.mp4"
       subServices={[
         {
           key: "A",
